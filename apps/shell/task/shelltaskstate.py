@@ -14,29 +14,15 @@ class ShellTaskDefaults(TaskDefaults):
 
     def __init__(self):
         super(ShellTaskDefaults, self).__init__()
-        self.options = ShellTaskOptions()
-        self.out_file_basename = "out"
-        self.shared_data_files = ['simulation.input']
+        self.shared_data_files = []
         self.default_subtasks = 1
-        self.code_dir = os.path.join(get_golem_path(),
-                                     "apps", "shell", "resources", "code_dir")
-
 
 class ShellTaskDefinition(TaskDefinition):
     def __init__(self, defaults=None):
         TaskDefinition.__init__(self)
 
-        self.options = ShellTaskOptions()
-        self.task_type = 'RASPA'
+        self.task_type = 'SHELL'
         self.shared_data_files = []
-
-        # subtask code
-        self.code_dir = os.path.join(get_golem_path(),
-                                     "apps", "shell", "resources", "code_dir")
-        self.code_files = []
-
-        self.result_size = 256  # length of result hex number
-        self.out_file_basename = "out"
 
         if defaults:
             self.set_defaults(defaults)
@@ -52,10 +38,7 @@ class ShellTaskDefinition(TaskDefinition):
     # TODO maybe move it to the CoreTask? Issue #2428
     def set_defaults(self, defaults: ShellTaskDefaults):
         self.shared_data_files = deepcopy(defaults.shared_data_files)
-        self.code_dir = defaults.code_dir
         self.total_subtasks = defaults.default_subtasks
-        self.options = deepcopy(defaults.options)
-
 
 class ShellTaskOptions(Options):
     def __init__(self):
