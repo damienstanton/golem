@@ -139,6 +139,7 @@ class DockerTaskThread(TaskThread):
 
     def _run_docker_job(self) -> Optional[int]:
         self.dir_mapping.mkdirs()
+        assert isinstance(self.docker_manager, DockerManager)
 
         params = dict(
             image=self.image,

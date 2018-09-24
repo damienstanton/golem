@@ -259,6 +259,7 @@ class TestTaskComputer(DatabaseFixture, LogTestCase):
         tc.counting_task = True
         tc.change_config(mock.Mock(), in_background=False)
 
+        # pylint: disable=unused-argument
         def _update_config_2(status_callback, done_callback, *_, **__):
             done_callback(False)
         tc.docker_manager.update_config = _update_config_2

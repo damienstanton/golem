@@ -316,8 +316,9 @@ class TaskComputer(object):
             run_benchmarks: bool,
             work_dir: Path,
             in_background: bool = True
-    ) -> Deferred:
+    ) -> Optional[Deferred]:
         dm = self.docker_manager
+        assert isinstance(dm, DockerManager)
         dm.build_config(config_desc)
 
         deferred = Deferred()
