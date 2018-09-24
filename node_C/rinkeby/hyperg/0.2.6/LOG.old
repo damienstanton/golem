@@ -1,0 +1,5 @@
+2018/09/24-14:35:31.623569 7f9fcbfff700 Recovering log #10
+2018/09/24-14:35:31.623605 7f9fcbfff700 Level-0 table #12: started
+2018/09/24-14:35:31.625836 7f9fcbfff700 Level-0 table #12: 1685 bytes OK
+2018/09/24-14:35:31.631241 7f9fcbfff700 Delete type=3 #8
+2018/09/24-14:35:31.631258 7f9fcbfff700 Delete type=0 #10
