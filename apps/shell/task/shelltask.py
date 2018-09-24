@@ -48,7 +48,6 @@ class ShellTask(CoreTask):
             root_path=root_path,
             total_tasks=total_tasks
         )
-        import pdb; pdb.set_trace()
 
     def short_extra_data_repr(self, extra_data):
         return "Shelltask extra_data: {}".format(extra_data)

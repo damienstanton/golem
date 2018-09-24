@@ -2,7 +2,6 @@ import os
 from typing import Callable, Dict, Optional, Any
 
 from golem_verificator.core_verifier import CoreVerifier
-from apps.shell.resources.code_dir import computing
 
 
 class ShellTaskVerifier(CoreVerifier):

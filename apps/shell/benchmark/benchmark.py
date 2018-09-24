@@ -18,17 +18,15 @@ class ShellTaskBenchmark(CoreBenchmark):
     def __init__(self):
         self._normalization_constant = 1000  # TODO tweak that. issue #1356
         self.shell_task_path = join(get_golem_path(),
-                                    "apps", "shell", "test_data")
+                                    "apps", "shell", "resources", "benchmark")
         td = self._task_definition = ShellTaskDefinition(ShellTaskDefaults())
 
         td.task_id = str(uuid.uuid4())
-        td.shared_data_files = [join(self.shell_task_path, x) for x in
-                                td.shared_data_files]
         td.main_program_file = ShellTaskEnvironment().main_program_file
-        td.resources = {join(self.shell_task_path, "simulation.input")}
+        td.resources = {td.main_program_file}
         td.add_to_resources()
 
-        self.verification_options = {"result": "Hello world!"}
+        self.verification_options = {}
         verification_data = dict()
         self.verification_options["subtask_id"] = "ShellBenchmark"
         verification_data['subtask_info'] = self.verification_options

@@ -5,9 +5,9 @@ from golem.docker.environment import DockerEnvironment
 
 
 class ShellTaskEnvironment(DockerEnvironment):
-    DOCKER_IMAGE = "golemfactory/base"
-    DOCKER_TAG = "1.2"
+    DOCKER_IMAGE = "golemfactory/shell"
+    DOCKER_TAG = "1.0"
     ENV_ID = "Shell"
     APP_DIR = path.join(get_golem_path(), 'apps', 'shell')
-    SCRIPT_NAME = "docker_shelltask.py"
+    SCRIPT_NAME = "start.sh"
     SHORT_DESCRIPTION = "Shell task"
