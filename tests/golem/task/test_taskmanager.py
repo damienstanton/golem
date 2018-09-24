@@ -614,6 +614,29 @@ class TestTaskManager(LogTestCase, TestDirFixtureWithReactor,
                  ("task4", None, TaskOp.FINISHED)])
         del handler
 
+    @patch('golem.task.taskmanager.logger.warning')
+    def test_computed_task_received_failure(self, mock_log_warn):
+        # GIVEN
+        task_id = "unittest_task_id"
+        subtask_id = "unittest_subtask_id"
+        result = Mock()
+        result_type = Mock()
+        mock_finished = Mock()
+
+        self.tm.notice_task_updated = Mock()
+        self.tm.subtask2task_mapping[subtask_id] = task_id
+
+        # WHEN
+        self.tm.computed_task_received(subtask_id, result, result_type,
+                                       mock_finished)
+
+        # THEN
+        assert mock_log_warn.called_once
+        assert self.tm.notice_task_updated.called_twice
+        assert self.tm.notice_task_updated.called_with(task_id, subtask_id=subtask_id,
+                                               op=OtherOp.UNEXPECTED)
+        assert mock_finished.called_once
+
     @patch('golem.task.taskmanager.TaskManager.dump_task')
     def test_task_result_incoming(self, dump_mock):
         subtask_id = "xxyyzz"
